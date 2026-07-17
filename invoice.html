@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Invoice Pembelian</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<header>
+
+<h1>Invoice Pembelian</h1>
+
+</header>
+
+
+
+<section class="invoice-container">
+
+
+<h2>Terima Kasih Telah Berbelanja</h2>
+
+
+<div id="invoiceNumber"></div>
+
+
+<hr>
+
+
+<h3>Data Pembeli</h3>
+
+<p>
+Nama :
+<span id="buyerName"></span>
+</p>
+
+
+<p>
+Nomor HP :
+<span id="buyerPhone"></span>
+</p>
+
+
+<p>
+Alamat :
+<span id="buyerAddress"></span>
+</p>
+
+
+
+<hr>
+
+
+
+<h3>Detail Produk</h3>
+
+<div id="productList"></div>
+
+
+
+<hr>
+
+
+
+<h2>
+Total Pembayaran :
+Rp <span id="totalPrice"></span>
+</h2>
+
+
+
+<h3>
+Status :
+<span class="status">
+Menunggu Pembayaran
+</span>
+</h3>
+
+
+
+<br>
+
+
+<button onclick="window.location.href='index.html'">
+
+Kembali ke Home
+
+</button>
+
+
+</section>
+
+
+
+<script>
+
+
+// Nomor Invoice otomatis
+
+let invoice =
+"INV-" + Date.now();
+
+
+document.getElementById("invoiceNumber").innerHTML =
+`
+<h3>
+Nomor Invoice : ${invoice}
+</h3>
+`;
+
+
+
+
+// Ambil data pembeli
+
+let buyer =
+JSON.parse(localStorage.getItem("buyer"));
+
+
+
+if(buyer){
+
+document.getElementById("buyerName").innerHTML =
+buyer.name;
+
+
+document.getElementById("buyerPhone").innerHTML =
+buyer.phone;
+
+
+document.getElementById("buyerAddress").innerHTML =
+buyer.address;
+
+}
+
+
+
+
+// Ambil data cart
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+
+
+let productHTML="";
+
+let total=0;
+
+
+
+cart.forEach(item=>{
+
+
+let subtotal =
+item.price * item.qty;
+
+
+total += subtotal;
+
+
+
+productHTML +=
+
+`
+
+<div class="invoice-product">
+
+
+<img src="${item.image}" width="80">
+
+
+<p>
+${item.name}
+<br>
+
+Qty :
+${item.qty}
+
+<br>
+
+Harga :
+Rp ${item.price.toLocaleString()}
+
+<br>
+
+Subtotal :
+Rp ${subtotal.toLocaleString()}
+
+</p>
+
+
+</div>
+
+`;
+
+
+
+});
+
+
+
+document.getElementById("productList").innerHTML =
+productHTML;
+
+
+
+document.getElementById("totalPrice").innerHTML =
+total.toLocaleString();
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

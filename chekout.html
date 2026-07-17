@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Keyboard Store</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Keyboard Store</h1>
+</header>
+
+
+<section class="checkout-container">
+
+    <h2>Checkout</h2>
+
+    <div class="checkout-box">
+
+        <h3>Data Pembeli</h3>
+
+        <input type="text" id="nama" placeholder="Nama Lengkap">
+
+        <input type="number" id="hp" placeholder="Nomor HP">
+
+        <textarea id="alamat" placeholder="Alamat Lengkap"></textarea>
+
+
+        <h3>Pilih Pembayaran</h3>
+
+
+        <select id="pembayaran">
+
+            <option value="DANA">
+                DANA
+            </option>
+
+            <option value="GoPay">
+                GoPay
+            </option>
+
+            <option value="QRIS">
+                QRIS
+            </option>
+
+        </select>
+
+
+    </div>
+
+
+
+    <div class="checkout-box">
+
+        <h3>Ringkasan Pesanan</h3>
+
+        <div id="summary"></div>
+
+        <h3>
+            Total:
+            Rp <span id="total"></span>
+        </h3>
+
+        <button onclick="checkout()">
+            Bayar Sekarang
+        </button>
+
+    </div>
+
+
+</section>
+
+<script src="js/checkout.js"></script>
+
+</body>
+</html>
